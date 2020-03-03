@@ -1,0 +1,2 @@
+export const STORE_VERIFIED_USER = "STORE_VERIFED_USER"
+export const REMOVE_USER = "REMOVE_USER"
