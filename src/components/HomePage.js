@@ -11,8 +11,9 @@ import {clearPersistedState} from "../redux/actions/clearPersistedStateActions"
 import Loading from "../helperComponents/Loading"
 import ErrorMessage from "../helperComponents/ErrorMessage"
 import {isEmpty} from 'lodash'
+import AddIncomeForm from "./AddIncomeForm"
 
-const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, fetchIncome, clearPersistedState}) => {
+const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, fetchIncome, clearPersistedState, isAddingIncome, addIncomeError}) => {
     const handleSignOut = useCallback(e => {
         e.preventDefault()
         removeUser()
@@ -25,7 +26,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
     }, [fetchIncome, user.profile.email])
 
     let rows
-    if (!isEmpty(income)) {
+    if (!isEmpty(income) && !income.new_user) {
         rows = income.tours.sort((a, b) => {
             var dateA = new Date(a.cash_date)
             var dateB = new Date(b.cash_date)
@@ -50,11 +51,11 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
     return (
         <>
             {
-                isLoadingIncome
+                isLoadingIncome || isAddingIncome
                     ?
                     <Loading/>
                     :
-                    !isEmpty(loadIncomeError)
+                    !isEmpty(loadIncomeError) || !isEmpty(addIncomeError)
                         ?
                         <ErrorMessage/>
                         :
@@ -67,23 +68,21 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                 </Col>
                             </Row>
                             <Row style={{padding: "0 0 20px 0"}}>
-                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
                                     Welcome, {user.profile.name}!
                                 </Col>
-                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
-                                    Up-to-Date Income: ${isEmpty(income) ? 0 : income.acc_inc}
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
+                                    Up-to-Date Income: ${income.new_user ? 0 : income.acc_inc}
                                 </Col>
-                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
-                                    <button>Add New Income</button>
-                                </Col>
-                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
                                     <button onClick={handleSignOut}>Log Out</button>
                                 </Col>
                             </Row>
+                            <AddIncomeForm />
                             <Row>
                                 <Col>
                                     {
-                                        isEmpty(income)
+                                        income.new_user
                                             ?
                                             <p style={{textAlgin: "center"}}>
                                                 You don't have any income. Start to add income.
@@ -120,7 +119,9 @@ const mapStateToProps = state => {
         user: state.user,
         income: state.income.income,
         isLoadingIncome: state.income.isLoadingIncome,
-        loadIncomeError: state.income.loadIncomeError
+        loadIncomeError: state.income.loadIncomeError,
+        isAddingIncome: state.income.isAddingIncome,
+        addIncomeError: state.income.addIncomeError
     }
 }
 

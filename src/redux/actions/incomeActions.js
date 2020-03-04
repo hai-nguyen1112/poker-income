@@ -17,10 +17,10 @@ export const fetchIncome = email => {
                 let income = response.data.find(income => income.email === email)
                 if (!isEmpty(income)) {
                     income["new_user"] = false
+                    dispatch(fetchIncomeSuccess(income))
                 } else {
-                    income["new_user"] = true
+                    dispatch(fetchIncomeSuccess({new_user: true}))
                 }
-                dispatch(fetchIncomeSuccess(income))
             })
             .catch(error => dispatch(fetchIncomeFail(error)))
     }
