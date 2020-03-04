@@ -4,6 +4,7 @@ import userManager from '../utils/userManager'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {storeVerifedUser} from "../redux/actions/userActions"
+import Loading from "../helperComponents/Loading"
 
 const CallbackPage = ({history, storeVerifiedUser}) => {
 
@@ -22,7 +23,7 @@ const CallbackPage = ({history, storeVerifiedUser}) => {
             successCallback={handleSuccessCallback}
             errorCallback={handleErrorCallback}
         >
-            <div>Loading...</div>
+            <Loading />
         </CallbackComponent>
     )
 }

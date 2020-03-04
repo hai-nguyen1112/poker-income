@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -6,95 +6,129 @@ import Table from 'react-bootstrap/Table'
 import {connect} from 'react-redux'
 import userManager from '../utils/userManager'
 import {removeUser} from "../redux/actions/userActions"
+import {fetchIncome} from "../redux/actions/incomeActions"
+import {clearPersistedState} from "../redux/actions/clearPersistedStateActions"
+import Loading from "../helperComponents/Loading"
+import ErrorMessage from "../helperComponents/ErrorMessage"
+import {isEmpty} from 'lodash'
 
-const HomePage = ({user, removeUser}) => {
+const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, fetchIncome, clearPersistedState}) => {
     const handleSignOut = useCallback(e => {
         e.preventDefault()
         removeUser()
+        clearPersistedState()
         userManager.removeUser()
-    }, [removeUser])
+    }, [removeUser, clearPersistedState])
+
+    useEffect(() => {
+        fetchIncome(user.profile.email)
+    }, [fetchIncome, user.profile.email])
+
+    let rows
+    if (!isEmpty(income)) {
+        rows = income.tours.sort((a, b) => {
+            var dateA = new Date(a.cash_date)
+            var dateB = new Date(b.cash_date)
+            return dateB - dateA
+        })
+            .map((tour, index) => (
+                <tr key={index}>
+                    <td>{tour.cash_date}</td>
+                    <td>{tour.casino}</td>
+                    <td>{tour.tour}</td>
+                    <td>{tour.buy_in}</td>
+                    <td>{tour.add_on}</td>
+                    <td>{tour.placement}</td>
+                    <td>{tour.earning}</td>
+                    <td>
+                        <button>Edit</button>
+                    </td>
+                </tr>
+            ))
+    }
 
     return (
         <>
-            <Container fluid>
-                <Row style={{padding: "10px 0 0 0"}}>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                        <h1>
-                            Income Tracker
-                        </h1>
-                    </Col>
-                </Row>
-                <Row style={{padding: "0 0 20px 0"}}>
-                    <Col xs={12} sm={4} md={4} lg={4} xl={4}>
-                        Welcome, {user.profile.name}!
-                    </Col>
-                    <Col xs={12} sm={4} md={4} lg={4} xl={4}>
-
-                    </Col>
-                    <Col xs={12} sm={4} md={4} lg={4} xl={4}>
-                        <button onClick={handleSignOut}>Log Out</button>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Table responsive>
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                                <td>Table cell</td>
-                            </tr>
-                            </tbody>
-                        </Table>
-                    </Col>
-                </Row>
-            </Container>
+            {
+                isLoadingIncome
+                    ?
+                    <Loading/>
+                    :
+                    !isEmpty(loadIncomeError)
+                        ?
+                        <ErrorMessage/>
+                        :
+                        <Container fluid>
+                            <Row style={{padding: "10px 0 0 0"}}>
+                                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                                    <h1>
+                                        Poker Income Tracker
+                                    </h1>
+                                </Col>
+                            </Row>
+                            <Row style={{padding: "0 0 20px 0"}}>
+                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                    Welcome, {user.profile.name}!
+                                </Col>
+                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                    Up-to-Date Income: ${isEmpty(income) ? 0 : income.acc_inc}
+                                </Col>
+                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                    <button>Add New Income</button>
+                                </Col>
+                                <Col xs={12} sm={6} md={3} lg={3} xl={3} style={{marginTop: "10px"}}>
+                                    <button onClick={handleSignOut}>Log Out</button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {
+                                        isEmpty(income)
+                                            ?
+                                            <p style={{textAlgin: "center"}}>
+                                                You don't have any income. Start to add income.
+                                            </p>
+                                            :
+                                            <Table responsive>
+                                                <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Casino</th>
+                                                    <th>Tournament</th>
+                                                    <th>Buy-in</th>
+                                                    <th>Add-on</th>
+                                                    <th>Placement</th>
+                                                    <th>Earning</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {rows}
+                                                </tbody>
+                                            </Table>
+                                    }
+                                </Col>
+                            </Row>
+                        </Container>
+            }
         </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        income: state.income.income,
+        isLoadingIncome: state.income.isLoadingIncome,
+        loadIncomeError: state.income.loadIncomeError
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        removeUser: () => dispatch(removeUser())
+        removeUser: () => dispatch(removeUser()),
+        fetchIncome: email => dispatch(fetchIncome(email)),
+        clearPersistedState: () => dispatch(clearPersistedState())
     }
 }
 

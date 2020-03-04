@@ -1,20 +1,18 @@
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import HomePage from './HomePage'
 
-class Routes extends Component {
+const Routes = ({history}) => {
 
-    componentDidMount() {
-        this.props.history.push("/home")
-    }
+    useEffect(() => {
+        history.push("/home")
+    }, [history])
 
-    render() {
-        return (
-            <Switch>
-                <Route path="/home" component={HomePage} />
-            </Switch>
-        )
-    }
+    return (
+        <Switch>
+            <Route path="/home" component={HomePage}/>
+        </Switch>
+    )
 }
 
 export default withRouter(Routes)
