@@ -1,12 +1,18 @@
 import React, {useState, useCallback} from 'react'
 import EditIncomeForm from "./EditIncomeForm"
+import DeleteConfirmation from "../helperComponents/DeleteConfirmation"
 
 const IncomeRow = ({index, tour}) => {
     const [clickedEdit, setClickedEdit] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
 
     const handleShowEditForm = useCallback(() => {
         setClickedEdit(!clickedEdit)
     }, [clickedEdit])
+
+    const handleClickDelete = useCallback(() => {
+        setShowConfirm(!showConfirm)
+    }, [showConfirm])
 
     return (
         <>
@@ -27,7 +33,13 @@ const IncomeRow = ({index, tour}) => {
                             <button onClick={handleShowEditForm}>Edit</button>
                             &nbsp;
                             &nbsp;
-                            <button>Delete</button>
+                            <button onClick={handleClickDelete}>Delete</button>
+                            <DeleteConfirmation
+                                show={showConfirm}
+                                onHide={handleClickDelete}
+                                index={index}
+                                tour={tour}
+                            />
                         </td>
                     </tr>
             }
