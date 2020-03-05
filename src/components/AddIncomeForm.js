@@ -63,7 +63,6 @@ const AddIncomeForm = ({user, income, addIncome}) => {
     const handleSubmit = useCallback(e => {
         e.preventDefault()
         const form = e.currentTarget
-        let submit
         let addData = {}
         if (form.checkValidity() === false) {
             e.preventDefault()
@@ -82,10 +81,8 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                 }
                 addData["acc_inc"] = income.acc_inc + earning - buyIn - addOn
                 addData["tours"] = tours
-                submit = setTimeout(() => {
-                    addIncome(income.id, addData)
-                    handleClickOfPanel()
-                }, 2000)
+                addIncome(income.id, addData)
+                handleClickOfPanel()
             } else {
                 addData["email"] = user.profile.email
                 addData["acc_inc"] = earning - buyIn - addOn
@@ -98,14 +95,11 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                     "placement": placement,
                     "earning": earning
                 }]
-                submit = setTimeout(() => {
-                    addIncome(addData)
-                    handleClickOfPanel()
-                }, 2000)
+                addIncome(addData)
+                handleClickOfPanel()
             }
         }
         setValidated(true)
-        return () => clearTimeout(submit)
     }, [date, casino, tournament, buyIn, addOn, placement, earning, income, user, addIncome, handleClickOfPanel])
 
     return (
@@ -136,7 +130,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Form.Row>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Tournament Date</Form.Label>
                                 <Form.Control
                                     required
@@ -154,7 +148,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Casino</Form.Label>
                                 <Form.Control
                                     required
@@ -169,7 +163,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Tournament</Form.Label>
                                 <Form.Control
                                     required
@@ -184,7 +178,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Buy-in</Form.Label>
                                 <Form.Control
                                     required
@@ -192,7 +186,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                     min="0"
                                     placeholder="Enter buy-in amount..."
                                     value={buyIn}
-                                    onChange={useCallback(e => setBuyIn(parseInt(e.target.value, 10)), [])}
+                                    onChange={useCallback(e => {
+                                        if (e.target.value !== "") {
+                                            setBuyIn(parseInt(e.target.value, 10))
+                                        } else {
+                                            setBuyIn(e.target.value)
+                                        }
+                                    }, [])}
                                     onKeyDown={useCallback(e => positiveNumberValidation(e), [])}
                                 />
                                 <Form.Control.Feedback>
@@ -202,7 +202,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Add-on</Form.Label>
                                 <Form.Control
                                     required
@@ -210,7 +210,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                     min="0"
                                     placeholder="Enter add-on amount..."
                                     value={addOn}
-                                    onChange={useCallback(e => setAddOn(parseInt(e.target.value, 10)), [])}
+                                    onChange={useCallback(e => {
+                                        if (e.target.value !== "") {
+                                            setAddOn(parseInt(e.target.value, 10))
+                                        } else {
+                                            setAddOn(e.target.value)
+                                        }
+                                    }, [])}
                                     onKeyDown={useCallback(e => positiveNumberValidation(e), [])}
                                 />
                                 <Form.Control.Feedback>
@@ -218,7 +224,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Placement</Form.Label>
                                 <Form.Control
                                     required
@@ -227,7 +233,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                     step="1"
                                     placeholder="Enter your finish rank..."
                                     value={placement}
-                                    onChange={useCallback(e => setPlacement(parseInt(e.target.value, 10)), [])}
+                                    onChange={useCallback(e => {
+                                        if (e.target.value !== "") {
+                                            setPlacement(parseInt(e.target.value, 10))
+                                        } else {
+                                            setPlacement(e.target.value)
+                                        }
+                                    }, [])}
                                     onKeyDown={useCallback(e => integerInputValidation(e), [])}
                                 />
                                 <Form.Control.Feedback>
@@ -235,7 +247,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
-                                        style={{textAlign: "left", fontFamily: "'Sigmar One', cursive"}}>
+                                        style={{textAlign: "left"}}>
                                 <Form.Label>Earning</Form.Label>
                                 <Form.Control
                                     required
@@ -243,7 +255,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                     min="0"
                                     placeholder="Enter your cash amount..."
                                     value={earning}
-                                    onChange={useCallback(e => setEarning(parseInt(e.target.value, 10)), [])}
+                                    onChange={useCallback(e => {
+                                        if (e.target.value !== "") {
+                                            setEarning(parseInt(e.target.value, 10))
+                                        } else {
+                                            setEarning(e.target.value)
+                                        }
+                                    }, [])}
                                     onKeyDown={useCallback(e => positiveNumberValidation(e), [])}
                                 />
                                 <Form.Control.Feedback>
@@ -253,10 +271,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3" style={{
                                 display: "flex",
                                 justifyContent: "center",
-                                alignItems: "flex-end",
-                                fontFamily: "'Sigmar One', cursive"
+                                alignItems: "flex-end"
                             }}>
-                                <Button ref={submitRef} type="submit">Submit form</Button>
+                                <Button ref={submitRef} type="submit">Submit Income</Button>
                             </Form.Group>
                         </Form.Row>
                     </Form>

@@ -12,6 +12,7 @@ import Loading from "../helperComponents/Loading"
 import ErrorMessage from "../helperComponents/ErrorMessage"
 import {isEmpty} from 'lodash'
 import AddIncomeForm from "./AddIncomeForm"
+import IncomeRow from "./IncomeRow"
 
 const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, fetchIncome, clearPersistedState, isAddingIncome, addIncomeError}) => {
     const handleSignOut = useCallback(e => {
@@ -33,18 +34,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
             return dateB - dateA
         })
             .map((tour, index) => (
-                <tr key={index}>
-                    <td>{tour.cash_date}</td>
-                    <td>{tour.casino}</td>
-                    <td>{tour.tour}</td>
-                    <td>{tour.buy_in}</td>
-                    <td>{tour.add_on}</td>
-                    <td>{tour.placement}</td>
-                    <td>{tour.earning}</td>
-                    <td>
-                        <button>Edit</button>
-                    </td>
-                </tr>
+                <IncomeRow key={index} index={index} tour={tour} />
             ))
     }
 
@@ -88,7 +78,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                                 You don't have any income. Start to add income.
                                             </p>
                                             :
-                                            <Table responsive>
+                                            <Table size="sm" responsive striped={true} style={{minWidth: "1000px"}}>
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>

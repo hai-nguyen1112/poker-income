@@ -58,6 +58,31 @@
           "earning": 0
         }
       ]
+    },
+    {
+      "email": "heroku2022@gmail.com",
+      "acc_inc": 680,
+      "tours": [
+        {
+          "casino": "Horseshoe",
+          "tour": "Bounty Green Chips",
+          "cash_date": "05 Mar 2020",
+          "buy_in": 120,
+          "add_on": 0,
+          "placement": 34,
+          "earning": 400
+        },
+        {
+          "casino": "Maryland Live!",
+          "tour": "Deep Stacks",
+          "cash_date": "04 Mar 2020",
+          "buy_in": 100,
+          "add_on": 0,
+          "placement": 234,
+          "earning": 500
+        }
+      ],
+      "id": 3
     }
   ]
 }

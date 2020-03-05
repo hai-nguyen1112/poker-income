@@ -5,11 +5,13 @@ import {connect} from 'react-redux'
 import {clearPersistedState} from "../redux/actions/clearPersistedStateActions"
 import {withRouter} from 'react-router-dom'
 import {removeUser} from "../redux/actions/userActions"
+import userManager from "../utils/userManager"
 
 const ErrorMessage = ({history, clearPersistedState, removeUser}) => {
     const handleClickHere = useCallback(() => {
         clearPersistedState()
         removeUser()
+        userManager.removeUser()
         history.push("/login")
     }, [history, clearPersistedState, removeUser])
     return (
