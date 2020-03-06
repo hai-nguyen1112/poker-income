@@ -79,7 +79,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                         income.new_user
                                             ?
                                             <p style={{textAlgin: "center", fontFamily: "'Fredoka One', cursive", color: "rgb(227, 84, 122)"}}>
-                                                You don't have any poker tournament input. Start to add tournament.
+                                                You don't have any poker tournament/cash input. Start to add tournament/cash.
                                             </p>
                                             :
                                             <Table size="sm" responsive striped={true} variant="dark" bordered={true} style={{minWidth: "1100px"}}>
