@@ -53,7 +53,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                             <Row style={{background: "rgb(244, 206, 96)", fontFamily: "'Sigmar One', cursive", color: "rgb(205, 90, 75"}}>
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <h1>
-                                        Poker Income Tracker
+                                        Poker Earning Tracker
                                     </h1>
                                 </Col>
                             </Row>
@@ -62,7 +62,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                     Welcome {user.profile.name}!
                                 </Col>
                                 <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{padding: "5px 0 5px 0", background: "rgb(205, 90, 75)", fontFamily: "'Muli', sans-serif", color: "white", fontSize: "20px"}}>
-                                    Up-to-Date Income: ${income.new_user ? 0 : income.acc_inc}
+                                    Up-to-date Earnings: ${income.new_user ? 0 : income.acc_inc}
                                 </Col>
                                 <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{padding: "5px 0 5px 0", background: "rgb(70, 125, 219)", fontFamily: "'Muli', sans-serif", color: "white", fontSize: "20px"}}>
                                     <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} onClick={handleSignOut}>Log Out</button>
@@ -79,7 +79,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                         income.new_user
                                             ?
                                             <p style={{textAlgin: "center", fontFamily: "'Fredoka One', cursive", color: "rgb(227, 84, 122)"}}>
-                                                You don't have any income. Start to add income.
+                                                You don't have any poker tournament input. Start to add tournament.
                                             </p>
                                             :
                                             <Table size="sm" responsive striped={true} variant="dark" bordered={true} style={{minWidth: "1100px"}}>

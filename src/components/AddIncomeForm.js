@@ -122,7 +122,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             <i className="fas fa-arrow-circle-down"></i>
                     }
                     &nbsp;
-                    Add New Income
+                    Add Tournament/Cash
                 </h4>
             </Card.Header>
             <Collapse in={open} style={{background: "rgb(227, 84, 122)", color: "white"}}>
