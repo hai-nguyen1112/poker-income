@@ -280,7 +280,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 justifyContent: "center",
                                 alignItems: "flex-end"
                             }}>
-                                <Button variant="light" ref={submitRef} type="submit" style={{color: "rgb(227, 84, 122)", fontFamily: "'Fredoka One', cursive"}}>Submit</Button>
+                                <Button type="submit" variant="light" ref={submitRef} style={{color: "rgb(227, 84, 122)", fontFamily: "'Fredoka One', cursive"}}>Submit</Button>
                             </Form.Group>
                         </Form.Row>
                     </Form>
