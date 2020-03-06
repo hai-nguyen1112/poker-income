@@ -82,7 +82,7 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                                                 You don't have any income. Start to add income.
                                             </p>
                                             :
-                                            <Table size="sm" responsive striped={true} variant="dark" bordered={true} style={{minWidth: "1000px"}}>
+                                            <Table size="sm" responsive striped={true} variant="dark" bordered={true} style={{minWidth: "1100px"}}>
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>

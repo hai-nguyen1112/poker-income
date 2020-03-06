@@ -68,7 +68,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
         <tr key={index}>
             <td>
                 <input
-                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "150px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "200px"}}
                     required
                     type="date"
                     max={new Date().toISOString().slice(0, 10)}
