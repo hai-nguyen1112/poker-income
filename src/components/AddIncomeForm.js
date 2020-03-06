@@ -103,13 +103,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
     }, [date, casino, tournament, buyIn, addOn, placement, earning, income, user, addIncome, handleClickOfPanel])
 
     return (
-        <Card style={{marginBottom: "20px"}}>
+        <Card>
             <Card.Header
                 onClick={handleClickOfPanel}
-                style={{cursor: "pointer"}}
+                style={{cursor: "pointer", background: "rgb(227, 84, 122)", color: "white"}}
             >
                 <h4 style={{
-                    fontFamily: "'Sigmar One', cursive",
+                    fontFamily: "'Rubik', sans-serif",
                     margin: "-5px",
                     display: "flex",
                     justifyContent: "flex-start"
@@ -125,14 +125,15 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                     Add New Income
                 </h4>
             </Card.Header>
-            <Collapse in={open}>
+            <Collapse in={open} style={{background: "rgb(227, 84, 122)", color: "white"}}>
                 <Card.Body>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Form.Row>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Tournament Date</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Tournament Date</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="date"
                                     max={new Date().toISOString().slice(0, 10)}
@@ -149,8 +150,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Casino</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Casino</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="text"
                                     maxLength="50"
@@ -164,8 +166,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Tournament</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Tournament</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="text"
                                     maxLength="100"
@@ -179,8 +182,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Buy-in</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Buy-in</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="number"
                                     min="0"
@@ -203,8 +207,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                         <Form.Row>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Add-on</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Add-on</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="number"
                                     min="0"
@@ -225,8 +230,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Placement</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Placement</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="number"
                                     min="1"
@@ -248,8 +254,9 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                             </Form.Group>
                             <Form.Group as={Col} xs="12" sm="12" md="12" lg="3" xl="3"
                                         style={{textAlign: "left"}}>
-                                <Form.Label>Earning</Form.Label>
+                                <Form.Label style={{fontFamily: "'Josefin Sans', sans-serif", fontSize: "20px"}}>Earning</Form.Label>
                                 <Form.Control
+                                    style={{fontFamily: "'Nanum Myeongjo', cursive"}}
                                     required
                                     type="number"
                                     min="0"
@@ -273,7 +280,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                                 justifyContent: "center",
                                 alignItems: "flex-end"
                             }}>
-                                <Button ref={submitRef} type="submit">Submit Income</Button>
+                                <Button variant="light" ref={submitRef} type="submit" style={{color: "rgb(227, 84, 122)", fontFamily: "'Fredoka One', cursive"}}>Submit</Button>
                             </Form.Group>
                         </Form.Row>
                     </Form>

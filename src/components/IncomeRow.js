@@ -30,10 +30,10 @@ const IncomeRow = ({index, tour}) => {
                         <td>{tour.placement}</td>
                         <td>{tour.earning}</td>
                         <td>
-                            <button onClick={handleShowEditForm}>Edit</button>
+                            <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} onClick={handleShowEditForm}>Edit</button>
                             &nbsp;
                             &nbsp;
-                            <button onClick={handleClickDelete}>Delete</button>
+                            <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} onClick={handleClickDelete}>Delete</button>
                             <DeleteConfirmation
                                 show={showConfirm}
                                 onHide={handleClickDelete}

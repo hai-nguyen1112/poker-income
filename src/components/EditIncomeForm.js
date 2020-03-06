@@ -5,7 +5,7 @@ import convertDate1 from "../helperFunctions/convertDate1"
 import {isEmpty} from 'lodash'
 import convertDate from "../helperFunctions/convertDate"
 import {connect} from 'react-redux'
-import {addIncome} from "../redux/actions/addIncomeActions";
+import {addIncome} from "../redux/actions/addIncomeActions"
 
 const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) => {
     const [date, setDate] = useState(convertDate1(tour.cash_date))
@@ -68,7 +68,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
         <tr key={index}>
             <td>
                 <input
-                    style={{maxWidth: "150px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "150px"}}
                     required
                     type="date"
                     max={new Date().toISOString().slice(0, 10)}
@@ -78,7 +78,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "150px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "150px"}}
                     ref={casinoRef}
                     required
                     type="text"
@@ -89,7 +89,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "150px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "150px"}}
                     required
                     type="text"
                     maxLength="100"
@@ -99,7 +99,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "80px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "80px"}}
                     required
                     type="number"
                     min="0"
@@ -116,7 +116,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "80px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "80px"}}
                     required
                     type="number"
                     min="0"
@@ -133,7 +133,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "80px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "80px"}}
                     required
                     type="number"
                     min="1"
@@ -151,7 +151,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
             </td>
             <td>
                 <input
-                    style={{maxWidth: "80px"}}
+                    style={{fontFamily: "'Nanum Myeongjo', cursive", maxWidth: "80px"}}
                     required
                     type="number"
                     min="0"
@@ -167,10 +167,10 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
                 />
             </td>
             <td>
-                <button ref={submitRef} onClick={handleSubmit}>Submit</button>
+                <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} ref={submitRef} onClick={handleSubmit}>Submit</button>
                 &nbsp;
                 &nbsp;
-                <button onClick={handleShowEditForm}>Cancel</button>
+                <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} onClick={handleShowEditForm}>Cancel</button>
             </td>
         </tr>
     )

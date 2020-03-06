@@ -17,7 +17,7 @@ const Loading = () => {
             <Spinner
                 animation='border'
                 role='status'
-                variant='info'
+                variant='danger'
                 style={{
                     width: '5rem',
                     height: '5rem'

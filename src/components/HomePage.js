@@ -50,35 +50,39 @@ const HomePage = ({user, removeUser, income, isLoadingIncome, loadIncomeError, f
                         <ErrorMessage/>
                         :
                         <Container fluid>
-                            <Row style={{padding: "10px 0 0 0"}}>
+                            <Row style={{background: "rgb(244, 206, 96)", fontFamily: "'Sigmar One', cursive", color: "rgb(205, 90, 75"}}>
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <h1>
                                         Poker Income Tracker
                                     </h1>
                                 </Col>
                             </Row>
-                            <Row style={{padding: "0 0 20px 0"}}>
-                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
-                                    Welcome, {user.profile.name}!
+                            <Row>
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{padding: "5px 0 5px 0", background: "rgb(83, 159, 101)", fontFamily: "'Muli', sans-serif", color: "white", fontSize: "20px"}}>
+                                    Welcome {user.profile.name}!
                                 </Col>
-                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{padding: "5px 0 5px 0", background: "rgb(205, 90, 75)", fontFamily: "'Muli', sans-serif", color: "white", fontSize: "20px"}}>
                                     Up-to-Date Income: ${income.new_user ? 0 : income.acc_inc}
                                 </Col>
-                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{marginTop: "10px"}}>
-                                    <button onClick={handleSignOut}>Log Out</button>
+                                <Col xs={12} sm={12} md={4} lg={4} xl={4} style={{padding: "5px 0 5px 0", background: "rgb(70, 125, 219)", fontFamily: "'Muli', sans-serif", color: "white", fontSize: "20px"}}>
+                                    <button style={{background: "transparent", border: "none", padding: "0!important", color: "white", textDecoration: "underline", cursor: "pointer"}} onClick={handleSignOut}>Log Out</button>
                                 </Col>
                             </Row>
-                            <AddIncomeForm />
-                            <Row>
+                            <Row style={{background: "rgb(244, 206, 96)", padding: "20px 0 10px 0"}}>
+                                <Col>
+                                    <AddIncomeForm />
+                                </Col>
+                            </Row>
+                            <Row style={{background: "rgb(244, 206, 96)", padding: "10px 0 10px 0"}}>
                                 <Col>
                                     {
                                         income.new_user
                                             ?
-                                            <p style={{textAlgin: "center"}}>
+                                            <p style={{textAlgin: "center", fontFamily: "'Fredoka One', cursive", color: "rgb(227, 84, 122)"}}>
                                                 You don't have any income. Start to add income.
                                             </p>
                                             :
-                                            <Table size="sm" responsive striped={true} style={{minWidth: "1000px"}}>
+                                            <Table size="sm" responsive striped={true} variant="dark" bordered={true} style={{minWidth: "1000px"}}>
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>

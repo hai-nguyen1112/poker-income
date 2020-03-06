@@ -61,7 +61,7 @@
     },
     {
       "email": "heroku2022@gmail.com",
-      "acc_inc": 280,
+      "acc_inc": 5060,
       "tours": [
         {
           "casino": "Maryland Live!",
@@ -71,6 +71,15 @@
           "add_on": 0,
           "placement": 34,
           "earning": 480
+        },
+        {
+          "casino": "Maryland Live!",
+          "tour": "Black Chips Bounty",
+          "cash_date": "01 Mar 2020",
+          "buy_in": 220,
+          "add_on": 0,
+          "placement": 1,
+          "earning": 5000
         }
       ],
       "id": 3
