@@ -11,7 +11,7 @@ export const addIncome = (...data) => {
         dispatch(addIncomeStart())
         if (!store.getState().income.income.new_user) {
             axios({
-                url: `/income/${data[0]}`,
+                url: `/incomes/${data[0]}`,
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -19,11 +19,15 @@ export const addIncome = (...data) => {
                 },
                 data: {...data[1]}
             })
-                .then(response => dispatch(addIncomeSuccess(response.data)))
+                .then(response => {
+                    let income = response.data
+                    income["tours"] = JSON.parse(income["tours"])
+                    dispatch(addIncomeSuccess(income))
+                })
                 .catch(error => dispatch(addIncomeFail(error)))
         } else {
             axios({
-                url: "/income",
+                url: "/incomes",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,7 +35,11 @@ export const addIncome = (...data) => {
                 },
                 data: {...data[0]}
             })
-                .then(response => dispatch(addIncomeSuccess(response.data)))
+                .then(response => {
+                    let income = response.data.income
+                    income["tours"] = JSON.parse(income["tours"])
+                    dispatch(addIncomeSuccess(income))
+                })
                 .catch(error => dispatch(addIncomeFail(error)))
         }
     }

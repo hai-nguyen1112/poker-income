@@ -38,7 +38,7 @@ const EditIncomeForm = ({index, tour, handleShowEditForm, income, editIncome}) =
         let editData = {}
         let difference = earning - buyIn - addOn - (tour.earning - tour.buy_in - tour.add_on)
         editData["acc_inc"] = income.acc_inc + difference
-        editData["tours"] = updatedTours
+        editData["tours"] = JSON.stringify(updatedTours)
         editIncome(income.id, editData)
     }, [date, casino, tournament, buyIn, addOn, placement, earning, index, income.tours, editIncome, income.acc_inc, income.id, tour.add_on, tour.buy_in, tour.earning])
 

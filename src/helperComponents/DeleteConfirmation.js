@@ -10,7 +10,7 @@ const DeleteConfirmation = ({show, onHide, index, deleteIncome, tour, income}) =
         updatedTours.splice(index, 1)
         let deleteData = {}
         deleteData["acc_inc"] = income.acc_inc - (tour.earning - tour.buy_in - tour.add_on)
-        deleteData["tours"] = updatedTours
+        deleteData["tours"] = JSON.stringify(updatedTours)
         deleteIncome(income.id, deleteData)
     }, [income.acc_inc, income.tours, index, tour.add_on, tour.buy_in, tour.earning, deleteIncome, income.id])
 

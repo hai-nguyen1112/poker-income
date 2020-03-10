@@ -10,13 +10,14 @@ export const fetchIncome = email => {
     return dispatch => {
         dispatch(fetchIncomeStart())
         axios({
-            url: "/income",
+            url: "/incomes",
             method: "GET"
         })
             .then(response => {
                 let income = response.data.find(income => income.email === email)
                 if (!isEmpty(income)) {
                     income["new_user"] = false
+                    income["tours"] = JSON.parse(income["tours"])
                     dispatch(fetchIncomeSuccess(income))
                 } else {
                     dispatch(fetchIncomeSuccess({new_user: true}))

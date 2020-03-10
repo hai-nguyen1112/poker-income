@@ -80,13 +80,13 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                     "earning": earning
                 }
                 addData["acc_inc"] = income.acc_inc + earning - buyIn - addOn
-                addData["tours"] = tours
+                addData["tours"] = JSON.stringify(tours)
                 addIncome(income.id, addData)
                 handleClickOfPanel()
             } else {
                 addData["email"] = user.profile.email
                 addData["acc_inc"] = earning - buyIn - addOn
-                addData["tours"] = [{
+                addData["tours"] = JSON.stringify([{
                     "casino": casino,
                     "tour": tournament,
                     "cash_date": convertDate(date),
@@ -94,7 +94,7 @@ const AddIncomeForm = ({user, income, addIncome}) => {
                     "add_on": addOn,
                     "placement": placement,
                     "earning": earning
-                }]
+                }])
                 addIncome(addData)
                 handleClickOfPanel()
             }
