@@ -9,6 +9,9 @@ switch (window.location.hostname) {
     case "poker-income.netlify.com":
         instance = axios.create({baseURL: "https://poker-income-backend.herokuapp.com/api/v1"})
         break
+    case "poker-income.netlify.app":
+        instance = axios.create({baseURL: "https://poker-income-backend.herokuapp.com/api/v1"})
+        break
     default:
         instance = axios.create({baseURL: "http://localhost:4000/api/v1"})
 }
